@@ -1,6 +1,6 @@
 # APR-RLOCS: Automated Plan Refinement for Robotic Layup of Composite Sheets
 
-This is the repository that contains source code for the [APR-RLOCS](https://l0g1c-80m8.github.io/apl-rlocs.github.io/) website.
+This is the repository that contains source code for the [plan-refinement](https://l0g1c-80m8.github.io/apl-rlocs.github.io/) website.
 
 [//]: # (If you find this project useful for your work please cite:)
 
