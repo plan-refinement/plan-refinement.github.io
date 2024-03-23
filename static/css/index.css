@@ -123,6 +123,16 @@ body {
   font-size: 0;
 }
 
+.results-carousel .item-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.results-carousel .item-label {
+  padding: 0.8rem;
+  font-size: 1.6rem;
+}
+
 .results-carousel video {
   margin: 0;
 }
