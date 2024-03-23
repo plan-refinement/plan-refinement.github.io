@@ -82,7 +82,6 @@ const render = (containerId, asset, camera_z = 0.7) => {
             gui.domElement.style.right = '0px';
             container.appendChild(gui.domElement);
             isinitialized = true;
-            cube.rotation.x = -3.1415926535
         }
     }
 
@@ -93,7 +92,10 @@ const render = (containerId, asset, camera_z = 0.7) => {
         if (cube) {
             // cube.rotation.x += 0.01;
             // cube.rotation.y += 0.01;
-            initGUI(); // initialize the GUI after the object is loaded
+            // initGUI(); // initialize the GUI after the object is loaded
+            if (!isinitialized) {
+                cube.rotation.x = -3.1415926535;
+            }
         }
 
         renderer.render(scene, camera);
