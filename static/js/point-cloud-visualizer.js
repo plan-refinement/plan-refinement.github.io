@@ -93,7 +93,7 @@ const render = (containerId, asset, camera_z = 0.7) => {
         if (cube) {
             // cube.rotation.x += 0.01;
             // cube.rotation.y += 0.01;
-            // initGUI(); // initialize the GUI after the object is loaded
+            initGUI(); // initialize the GUI after the object is loaded
         }
 
         renderer.render(scene, camera);
