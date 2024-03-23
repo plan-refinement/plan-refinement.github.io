@@ -9,8 +9,9 @@ const render = (containerId, asset, camera_z = 0.7) => {
     const container = document.getElementById(containerId);
     container.style.position = 'relative';
 
-    let renderer, stats;
+    let renderer, stats, gui;
     let scene, camera, controls, cube, dirlight, ambientLight;
+    let isinitialized = false;
 
     function initScene() {
         scene = new THREE.Scene();
@@ -67,13 +68,31 @@ const render = (containerId, asset, camera_z = 0.7) => {
         container.appendChild(stats.dom);
     }
 
+    function initGUI() {
+        if (!isinitialized) {
+            gui = new GUI();
+            cube = scene.getObjectByName(asset);
+            const rotationFolder = gui.addFolder('Rotation');
+            rotationFolder.add(cube.rotation, 'x', -Math.PI, Math.PI).name('Rotation X');
+            rotationFolder.add(cube.rotation, 'y', -Math.PI, Math.PI).name('Rotation Y');
+            rotationFolder.add(cube.rotation, 'z', -Math.PI, Math.PI).name('Rotation Z');
+            rotationFolder.open();
+            gui.domElement.style.position = 'absolute';
+            gui.domElement.style.top = '0px';
+            gui.domElement.style.right = '0px';
+            container.appendChild(gui.domElement);
+            isinitialized = true;
+        }
+    }
+
     function animate() {
         requestAnimationFrame(animate);
 
         cube = scene.getObjectByName(asset);
         if (cube) {
-            cube.rotation.x += 0.01;
-            cube.rotation.y += 0.01;
+            // cube.rotation.x += 0.01;
+            // cube.rotation.y += 0.01;
+            initGUI(); // initialize the GUI after the object is loaded
         }
 
         renderer.render(scene, camera);
@@ -93,5 +112,5 @@ const render = (containerId, asset, camera_z = 0.7) => {
     animate();
 };
 
-render('pc-container-sheet-1', './static/models/cube.obj', 4);
-render('pc-container-sheet-2', './static/models/cube.obj', 4);
+render('pc-container-sheet-1', './static/models/sheet1.obj', 4);
+render('pc-container-sheet-2', './static/models/sheet2.obj', 4);
