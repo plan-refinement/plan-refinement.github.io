@@ -165,3 +165,12 @@ body {
 #interpolation-image-wrapper img {
   border-radius: 5px;
 }
+
+#pc-container-sheet-1 {
+    height: 24rem;
+    width: 24rem;
+}
+#pc-container-sheet-2 {
+    height: 24rem;
+    width: 24rem;
+}
