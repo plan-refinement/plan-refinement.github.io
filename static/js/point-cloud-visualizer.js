@@ -3,6 +3,7 @@ import Stats from 'three/addons/libs/stats.module.js';
 import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+import { PLYLoader } from 'three/addons/loaders/PLYLoader.js';
 
 
 const render = (containerId, asset, camera_z = 0.7) => {
@@ -10,7 +11,7 @@ const render = (containerId, asset, camera_z = 0.7) => {
     container.style.position = 'relative';
 
     let renderer, stats, gui;
-    let scene, camera, controls, cube, dirlight, ambientLight;
+    let scene, camera, controls, mesh, dirlight, ambientLight;
     let isinitialized = false;
 
     function initScene() {
@@ -33,18 +34,17 @@ const render = (containerId, asset, camera_z = 0.7) => {
         ambientLight = new THREE.AmbientLight(0x404040, 2);
         scene.add(ambientLight);
 
-        // the loading of the object is asynchronous
-        let loader = new OBJLoader();
+        // Load .ply file
+        let loader = new PLYLoader();
         loader.load(
             // resource URL
             asset,
             // called when resource is loaded
-            function (object) {
-                cube = object.children[0];
-                cube.material = new THREE.MeshPhongMaterial({ color: 0x999999 });
-                cube.position.set(0, 0, 0);
-                cube.name = asset;
-                scene.add(cube);
+            function (geometry) {
+                // Apply color to vertices
+                const material = new THREE.MeshPhongMaterial({ vertexColors: true });
+                mesh = new THREE.Mesh(geometry, material);
+                scene.add(mesh);
             },
             // called when loading is in progress
             function (xhr) {
@@ -68,35 +68,11 @@ const render = (containerId, asset, camera_z = 0.7) => {
         container.appendChild(stats.dom);
     }
 
-    function initGUI() {
-        if (!isinitialized) {
-            gui = new GUI();
-            cube = scene.getObjectByName(asset);
-            const rotationFolder = gui.addFolder('Rotation');
-            rotationFolder.add(cube.rotation, 'x', -Math.PI, Math.PI).name('Rotation X');
-            rotationFolder.add(cube.rotation, 'y', -Math.PI, Math.PI).name('Rotation Y');
-            rotationFolder.add(cube.rotation, 'z', -Math.PI, Math.PI).name('Rotation Z');
-            rotationFolder.open();
-            gui.domElement.style.position = 'absolute';
-            gui.domElement.style.top = '0px';
-            gui.domElement.style.right = '0px';
-            container.appendChild(gui.domElement);
-            isinitialized = true;
-        }
-    }
-
     function animate() {
         requestAnimationFrame(animate);
 
-        cube = scene.getObjectByName(asset);
-        if (cube) {
-            // cube.rotation.x += 0.01;
-            // cube.rotation.y += 0.01;
-            cube.rotation.z += 0.01;
-            // initGUI(); // initialize the GUI after the object is loaded
-            if (!isinitialized) {
-                cube.rotation.x = -3.1415926535;
-            }
+        if (mesh) {
+            mesh.rotation.z += 0.01;
         }
 
         renderer.render(scene, camera);
@@ -116,5 +92,5 @@ const render = (containerId, asset, camera_z = 0.7) => {
     animate();
 };
 
-render('pc-container-sheet-1', './static/models/sheet1.obj', 4);
-render('pc-container-sheet-2', './static/models/sheet2.obj', 4);
+render('pc-container-sheet-1', './static/models/sheet1.ply', 4);
+render('pc-container-sheet-2', './static/models/sheet2.ply', 4);
