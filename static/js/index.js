@@ -1,7 +1,7 @@
 window.HELP_IMPROVE_VIDEOJS = false;
 
 const INTERP_BASE = "./static/interpolation/stacked";
-const NUM_INTERP_FRAMES = 17;
+const NUM_INTERP_FRAMES = 16;
 
 const interp_images = [];
 
