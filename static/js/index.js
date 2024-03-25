@@ -1,13 +1,13 @@
 window.HELP_IMPROVE_VIDEOJS = false;
 
 const INTERP_BASE = "./static/interpolation/stacked";
-const NUM_INTERP_FRAMES = 240;
+const NUM_INTERP_FRAMES = 16;
 
 const interp_images = [];
 
 function preloadInterpolationImages() {
-  for (let i = 0; i < NUM_INTERP_FRAMES; i++) {
-      const path = INTERP_BASE + '/' + String(i).padStart(6, '0') + '.jpg';
+  for (let i = 1; i < NUM_INTERP_FRAMES; i++) {
+      const path = INTERP_BASE + '/' + String(i).padStart(7, '0') + '.png';
       interp_images[i] = new Image();
     interp_images[i].src = path;
   }
