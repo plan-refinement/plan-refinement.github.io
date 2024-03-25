@@ -7,7 +7,7 @@ const interp_images = [];
 
 function preloadInterpolationImages() {
   for (let i = 0; i < NUM_INTERP_FRAMES; i++) {
-      const path = INTERP_BASE + '/' + String(i).padStart(6, '1') + '.png';
+      const path = INTERP_BASE + '/' + String(i).padStart(6, '0') + '.png';
       interp_images[i] = new Image();
     interp_images[i].src = path;
   }
