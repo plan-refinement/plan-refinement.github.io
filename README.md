@@ -6,15 +6,15 @@ This is the repository that contains source code for the [plan-refinement](https
 
 [//]: # (```)
 
-[//]: # (@article{park2021nerfies)
+[//]: # (@article{patel2024automated)
 
-[//]: # (  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},)
+[//]: # (  author    = {Patel, Rutvik and Kanyuck, Alec and McNulty, Zachary and Yu, Zeren and Carlson, Lisa and Heng, Vann and Johnson, Brice and Gupta, Satyandra K.},)
 
-[//]: # (  title     = {Nerfies: Deformable Neural Radiance Fields},)
+[//]: # (  title     = {Automated Plan Refinement for Improving Efficiency of Robotic Layup of Composite Sheets})
 
-[//]: # (  journal   = {ICCV},)
+[//]: # (  journal   = {CASE},)
 
-[//]: # (  year      = {2021},)
+[//]: # (  year      = {2024},)
 
 [//]: # (})
 
